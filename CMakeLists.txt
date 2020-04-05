@@ -3,6 +3,9 @@ project(OpenGlAndVulkanPlayground)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Wextra -Wconversion")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
+
 # -------------- Start External headers setup ---------------------------------------------------
 
 # Set the variable ExternalSources path to the root directory
