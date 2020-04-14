@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include "InternalHeaders/TestHeader.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -127,6 +128,9 @@ int main()
 
     // uncomment this call to draw in wireframe polygons.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+//    std::cout << test_concepts::sum_of_two_floats(1.0f, 2.0f);
+    std::cout << test_scope::sum(1.0f, 2.0f);
 
     // render loop
     // -----------
