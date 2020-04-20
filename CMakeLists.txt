@@ -6,7 +6,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Wextra -Wconversion")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 
-# -------------- Start External headers setup ---------------------------------------------------
+# -------------- Start Internal sources setup ---------------------------------------------------
+set(InternalSourcesRoot InternalSources)
+
+set(InternalSourcesFiles
+        ${InternalSourcesRoot}/Shader/shader.hpp)
+
+include_directories(${InternalSourcesRoot})
+
+# -------------- Sop Internal headers setup ------------------------------------------------------
+
+# -------------- Start External sources setup ---------------------------------------------------
 
 # Set the variable ExternalSources path to the root directory
 set(ExternalSourcesRoot Dependencies/Sources)
@@ -49,7 +59,7 @@ find_package(OpenGL REQUIRED)
 # -------------- OpenGL Setup ---------------------------------------------------------------------
 
 
-add_executable(OpenGlAndVulkanPlayground main.cpp InternalHeaders/TestHeader.h ${ExternalSourcesFiles})
+add_executable(OpenGlAndVulkanPlayground main.cpp ${ExternalSourcesFiles} ${InternalSourcesFiles})
 target_link_libraries(OpenGlAndVulkanPlayground glfw)
 target_link_libraries(OpenGlAndVulkanPlayground OpenGL::GL)
 
