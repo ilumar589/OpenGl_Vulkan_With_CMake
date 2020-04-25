@@ -10,7 +10,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 set(InternalSourcesRoot InternalSources)
 
 set(InternalSourcesFiles
-        ${InternalSourcesRoot}/Shader/shader.hpp)
+        ${InternalSourcesRoot}/Shader/shader.hpp
+        ${InternalSourcesRoot}/Shader/shader.cpp)
 
 include_directories(${InternalSourcesRoot})
 
@@ -62,6 +63,9 @@ find_package(OpenGL REQUIRED)
 add_executable(OpenGlAndVulkanPlayground main.cpp ${ExternalSourcesFiles} ${InternalSourcesFiles})
 target_link_libraries(OpenGlAndVulkanPlayground glfw)
 target_link_libraries(OpenGlAndVulkanPlayground OpenGL::GL)
+
+# -------------- Copy assets ----------------------------------------------------------------------
+file(COPY ${CMAKE_SOURCE_DIR}/Assets DESTINATION ${CMAKE_BINARY_DIR})
 
 
 #target_link_libraries(OpenGlAndVulkanPlayground glfw3.lib opengl32.lib)
