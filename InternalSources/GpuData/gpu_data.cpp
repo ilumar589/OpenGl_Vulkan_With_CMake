@@ -20,7 +20,7 @@ GpuData::TriangleGpuData::TriangleGpuData(std::array<float, 9> data) noexcept {
     glBindVertexArray(m_vertex_array_object);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vertex_buffer_object);
-    glBufferData(GL_ARRAY_BUFFER, m_data.size(), m_data.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(m_data), m_data.data(), GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)nullptr);
     glEnableVertexAttribArray(0);
