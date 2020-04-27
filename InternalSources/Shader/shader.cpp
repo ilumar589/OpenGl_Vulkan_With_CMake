@@ -27,18 +27,18 @@ Shader::BasicShader::BasicShader(const char* vertex_shader_full_path, const char
     glCompileShader(fragment_shader_handle);
     log_shader_error(fragment_shader_handle, ShaderType::FRAGMENT_SHADER);
 
-    this->m_ptr_shader_program_handle = std::make_unique<unsigned int>(glCreateProgram());
-    glAttachShader(*this->m_ptr_shader_program_handle, vertex_shader_handle);
-    glAttachShader(*this->m_ptr_shader_program_handle, fragment_shader_handle);
-    glLinkProgram(*this->m_ptr_shader_program_handle);
-    log_shader_program_error(*this->m_ptr_shader_program_handle);
+    m_shader_program_handle = glCreateProgram();
+    glAttachShader(m_shader_program_handle, vertex_shader_handle);
+    glAttachShader(m_shader_program_handle, fragment_shader_handle);
+    glLinkProgram(m_shader_program_handle);
+    log_shader_program_error(m_shader_program_handle);
 
     glDeleteShader(vertex_shader_handle);
     glDeleteShader(fragment_shader_handle);
 }
 
 unsigned int& Shader::BasicShader::get_shader_program_handle() {
-    return *this->m_ptr_shader_program_handle;
+    return m_shader_program_handle;
 }
 
 

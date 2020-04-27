@@ -11,7 +11,9 @@ set(InternalSourcesRoot InternalSources)
 
 set(InternalSourcesFiles
         ${InternalSourcesRoot}/Shader/shader.hpp
-        ${InternalSourcesRoot}/Shader/shader.cpp)
+        ${InternalSourcesRoot}/Shader/shader.cpp
+        ${InternalSourcesRoot}/GpuData/gpu_data.hpp
+        ${InternalSourcesRoot}/GpuData/gpu_data.cpp)
 
 include_directories(${InternalSourcesRoot})
 
@@ -25,7 +27,7 @@ set(ExternalSourcesRoot Dependencies/Sources)
 set(ExternalSourcesFiles
         ${ExternalSourcesRoot}/glad/glad.h
         ${ExternalSourcesRoot}/KHR/khrplatform.h
-        ${ExternalSourcesRoot}/glad.c)
+        ${ExternalSourcesRoot}/glad.c InternalSources/GpuData/gpu_data.cpp)
 # Set the include directories to the external headers root for analysis when writing includes
 include_directories(${ExternalSourcesRoot})
 
