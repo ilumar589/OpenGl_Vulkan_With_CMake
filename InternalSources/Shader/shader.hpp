@@ -16,7 +16,13 @@ namespace Shader {
 
     class BasicShader {
     public:
+//      constructors
         BasicShader(const char* vertex_shader_full_path, const char* fragment_shader_full_path) noexcept;
+        BasicShader ( const BasicShader & ) = delete;
+
+//        overloaded operators
+        BasicShader& operator= ( const BasicShader& ) = delete;
+
         unsigned int& get_shader_program_handle();
 
     private:

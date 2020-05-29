@@ -5,22 +5,20 @@
 #ifndef OPENGLANDVULKANPLAYGROUND_GPU_DATA_HPP
 #define OPENGLANDVULKANPLAYGROUND_GPU_DATA_HPP
 
-#include <array>
-
 namespace GpuData {
 
     class BasicGpuData {
     public:
-        virtual unsigned int& get_vertex_array_object() noexcept ;
+        virtual unsigned int& get_vertex_buffer_object() noexcept ;
 
     protected:
-        unsigned int m_vertex_array_object{};
+        unsigned int m_vertex_buffer_object{};
     };
 
 
     class TriangleGpuData : public BasicGpuData {
     public:
-        explicit TriangleGpuData(std::array<float,9> data) noexcept;
+        explicit TriangleGpuData(const float* triangle_data,size_t triangle_data_size, unsigned int & vertex_array_object) noexcept;
     };
 
     // optional: de-allocate all resources once they've outlived their purpose:

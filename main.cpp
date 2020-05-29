@@ -15,7 +15,7 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main() {
     // Test
-    use_unique_ptr_ref_for_l_value();
+//    use_unique_ptr_ref_for_l_value();
     //
 
 
@@ -61,22 +61,25 @@ int main() {
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
 
-    std::array<float,9> vertices {
+    constexpr float vertices[] = {
             -0.5f, -0.5f, 0.0f, // left
             0.5f, -0.5f, 0.0f, // right
             0.0f,  0.5f, 0.0f  // top
     };
 
-    GpuData::TriangleGpuData triangle_gpu_data{vertices};
+    unsigned int vertex_array_object{};
+
+    glGenVertexArrays(1, &vertex_array_object);
+
+    GpuData::TriangleGpuData triangle_gpu_data{vertices, sizeof(vertices), vertex_array_object};
 
 
     // uncomment this call to draw in wireframe polygons.
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // render loop
     // -----------
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
         // input
         // -----
         processInput(window);
@@ -88,7 +91,7 @@ int main() {
 
         // draw our first triangle
         glUseProgram(basic_shader.get_shader_program_handle());
-        glBindVertexArray(triangle_gpu_data.get_vertex_array_object()); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+        glBindVertexArray(vertex_array_object); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawArrays(GL_TRIANGLES, 0, 3);
         // glBindVertexArray(0); // no need to unbind it every time
 
