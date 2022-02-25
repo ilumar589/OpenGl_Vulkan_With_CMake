@@ -27,7 +27,7 @@ set(ExternalSourcesRoot Dependencies/Sources)
 set(ExternalSourcesFiles
         ${ExternalSourcesRoot}/glad/glad.h
         ${ExternalSourcesRoot}/KHR/khrplatform.h
-        ${ExternalSourcesRoot}/glad.c InternalSources/GpuData/gpu_data.cpp)
+        ${ExternalSourcesRoot}/glad.c)
 # Set the include directories to the external headers root for analysis when writing includes
 include_directories(${ExternalSourcesRoot})
 
